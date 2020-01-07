@@ -1,0 +1,668 @@
+{%
+Dim containerBackgroundColor = "247, 247, 247, 1"
+Dim menuBackgroundColor = CurrentADP.Var("menu_background_color")
+Dim menuFontColor = CurrentADP.Var("menu_font_color")
+Dim menuSelectFontColor = CurrentADP.Var("menu_selected_font_color")
+Dim menuSelectPipColor = CurrentADP.Var("menu_selected_pip_color")
+Dim showSocialMediaIcon = CurrentADP.Var("show_social_media_icon")
+Dim socialMediaIconBackgroundColor = CurrentADP.Var("social_media_icon_background_color")
+Dim showLogoBottomBorder = CurrentADP.Var("show_logo_bottom_line")
+Dim logoTopMargin = CurrentADP.Var("logo_top_margin")
+Dim logoBottomMargin = CurrentADP.Var("logo_bottom_margin")
+Dim bottomTextColor = CurrentADP.Var("bottom_text_color")
+Dim bottomTextFontSize = CurrentADP.Var("bottom_text_font_size")
+Dim menuTopMargin = CurrentADP.Var("menu_top_margin")
+Dim responsiveWidth = CurrentADP.Var("responsive_width")
+
+'Theme
+Dim WhiteColor = Theme.WhiteColor
+Dim BlackColor = Theme.BlackColor
+Dim PrimaryColor = Theme.PrimaryColor
+Dim PrimaryDarkColor = Theme.PrimaryDarkColor
+Dim PrimaryLightColor = Theme.PrimaryLightColor
+Dim SecondaryColor = Theme.SecondaryColor
+Dim SecondaryDarkColor = Theme.SecondaryDarkColor
+Dim FontFamily = "IBM Plex Sans"
+Dim BaseFS = "18px"
+Dim LargeFS = "34px"
+Dim NormalFS = "18px"
+Dim SmallFS = "14px"
+Dim NeutralColor = Theme.NeutralColor
+Dim NeutralDarkColor = Theme.NeutralDarkColor
+Dim NeutralLightColor = Theme.NeutralLightColor
+Dim ErrorColor = Theme.ErrorColor
+Dim BorderWidth = Theme.BorderWidth
+Dim BorderRadius = Theme.BorderRadius
+Dim VPadding = Theme.VPadding
+Dim HPadding = Theme.HPadding
+Dim LineHeight = Theme.LineHeight
+%}
+.que-wrapper {
+    /* display: none; */
+}
+.in-previous-button {
+  display: none;
+}
+.in-next-button {
+  display: none;
+}
+body {
+  margin: 0;
+  background-color: #f7f7f7;
+  font-family: IBM Plex Sans;
+}
+.menu {
+  display: block;
+  width: 330px;
+  min-width: 330px;
+  min-height: 100vh;
+  box-shadow: -10px 3px 76px 0 rgba(0, 0, 0, 0.16);
+  background-color: rgba({%=menuBackgroundColor%});
+}
+.main {
+  height: 100%;
+  min-height:100vh;
+  width: calc(100% - 330px);
+}
+.adc-wrapper{
+  padding-top: 0px;
+}
+.que-wrapper{
+  padding-left: 30px;
+}
+.adc-footer{
+  /* position: fixed; */
+  /* top:100px; */
+  bottom: 100px;
+  /* width: calc(100% - 380px); */
+  text-align: center;
+  padding: 60px 0 20px 0;
+}
+.logo-wrapper{
+  background-color: #ffffff;
+}
+.logo-gene_vf {
+{% If showLogoBottomBorder = "yes" Then %}
+    border-bottom: 1px solid grey;
+{% EndIf %}
+  width: 264px;
+  height: 69.5px;
+  margin: 20px auto 20px 30px;
+  padding-bottom: 20px;
+  object-fit: contain;
+}
+
+.logo-gene_mobile {
+  /* width: 69.5px;
+  height: 69.5px;
+  margin: 20px auto 20px 30px;
+  padding-bottom: 20px;
+  object-fit: contain; */
+  display: none;
+}
+
+.list-menu {
+  margin-top: {%=menuTopMargin %}px;
+  display: block;
+  height: 100%;
+}
+
+.list-menu ul {
+  padding-left: 0;
+}
+.menu .select {
+   color: rgba({%=menuSelectFontColor%}) !important;
+   border-left: 9px solid rgba({%=menuSelectPipColor%});
+   padding-left: 50px !important;
+   transition-delay: 0.1s;
+   -webkit-transition-delay: 0.1s;
+}
+.list-menu ul>li {
+  list-style-type: none;
+  padding: 20px 20px 20px 60px;
+  height: 18px;
+  font-family: IBM Plex Sans;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  text-align: left;
+  color: rgba({%= menuFontColor %});
+}
+.social-m-ico-wrap {
+  {% If showSocialMediaIcon = "no" Then %}
+      display: none;
+  {% EndIf %}
+  padding-left: 44%;
+  margin-bottom: 50px;
+}
+.social-m-ico {
+  width: 29.4px;
+  height: 45.4px;
+  background-color: rgba({%:=socialMediaIconBackgroundColor %});
+  display: flex;
+  /* text-align: center; */
+  align-items: center;
+  padding-left: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.bottom-text-wrap {
+  max-width: 330px;
+  text-align: center;
+  bottom: 0;
+  padding: 10px;
+}
+.bottom-text,
+.bottom-text-main {
+  height: 38.2px;
+  opacity: 0.4;
+  font-family: IBM Plex Sans;
+  font-size: {%:=bottomTextFontSize %}px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: rgba({%=bottomTextColor %});
+}
+.bottom-text-main {
+    display: none;
+}
+
+.previous-button{
+  width: 201.3px;
+  height: 52.1px;
+  border: solid 1px #9a9c96;
+  background-color: #ffffff;
+  font-family: IBM Plex Sans;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 52.1px;
+  letter-spacing: normal;
+  text-align: center;
+  color: #9a9c96;
+  margin-right: 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+.previous-button span{
+  margin-left: 33px;
+}
+
+.next-button {
+  width: 201.3px;
+  height: 52.1px;
+  background-color: #565656;
+  border: solid 1px #565656;
+  font-family: IBM Plex Sans;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 52.1px;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  display: inline-block;
+  cursor: pointer;
+}
+.next-button span{
+  margin-right: 33px;
+}
+
+/* ASKIA QUESTIONS STYLE GOES HERE */
+.askia-response label.askia-response-label {
+    cursor: pointer;
+    /* margin-left: .8em; */
+    vertical-align: middle;
+    transition: color linear .17s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.askia-control > table {
+    width: 100%;
+}
+.askia-grid-row .askia-response {
+    cursor: pointer;
+    margin-left: 0;
+}
+.askia-errors-summary ul {
+    padding-left: 1em;
+}
+
+::selection {
+    color: rgba({%= NeutralLightColor %});
+    background-color: rgba({%= PrimaryColor %});
+}
+::-moz-selection {
+    color: rgba({%= NeutralLightColor %});
+    background-color: rgba({%= PrimaryColor %});
+}
+body, html {
+    font-family: {%= FontFamily %};
+    font-size: {%= BaseFS %};
+}
+::-webkit-input-placeholder {
+    font-family: {%= FontFamily %};
+}
+::-moz-placeholder {
+    font-family: {%= FontFamily %};
+}
+:-ms-input-placeholder {
+    font-family: {%= FontFamily %};
+}
+:-moz-placeholder {
+    font-family: {%= FontFamily %}  ;
+}
+input, textarea, keygen, select, button {
+    font-family: {%= FontFamily %};
+}
+body, html {
+    color: rgba({%= BlackColor %});
+}
+
+.askiaquestions, input[type=text], input[type=number], textarea {
+    color: rgba({%= BlackColor %});
+    background-color: rgba({%= WhiteColor %});
+}
+.askiaquestions {
+    border-radius: {%= BorderRadius %};
+    padding: {%= VPadding %} {%= HPadding %};
+    margin: 0 auto 5em auto;
+    box-shadow: 0 4px 5px 0 rgba({%= BlackColor.ToRGB() %}, .14), 0 1px 10px 0 rgba({%= BlackColor.ToRGB() %}, .12), 0 2px 4px -1px rgba({%= BlackColor.ToRGB() %}, .2);
+}
+
+.askia-question-label {
+    font-size: 18px;
+    padding: {%= VPadding %} 0;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    letter-spacing: normal;
+    text-align: left;
+    color: rgba({%=PrimaryColor%});
+    max-width: 94%;
+    width: 100%;
+    display: block;
+}
+.askia-control .askia-question-label {
+    font-size: 18px;
+    padding: 0;
+}
+.askia-grid-row:nth-child(even) td {
+    background-color: rgba({%= NeutralLightColor.ToRGB() %},1.0);
+}
+.askia-grid-row td, .askia-grid-header td {
+    border-bottom: {%= BorderWidth %} solid rgba({%= NeutralDarkColor.ToRGB() %},1.0);
+}
+{% If (Browser.Mobile = False) Then %}
+.askia-grid-row:hover td {
+    background-color: rgba({%= BlackColor.ToRGB() %},.1);
+}
+{% EndIf %}
+
+.askia-grid-row .askia-question-label {
+    font-size: {%= NormalFS %};
+    padding-left: 0.5em;
+    width: 45%;
+    border:1px solid;
+}
+
+.instruction {
+    color: rgba({%= NeutralDarkColor %});
+    font-family: {%= FontFamily %};
+}
+
+.askia-radio, .askia-checkbox {
+  float: none !important;
+}
+
+.askia-grid-row > td >.askia-radio, .askia-grid-row > td > .askia-checkbox {
+  float: none !important;
+}
+
+.askia-radio + .askia-response-label, .askia-checkbox + .askia-response-label {
+    display: block !important;
+    margin-left: 25px !important;
+    padding-left: 10px !important;
+    vertical-align: text-top !important;
+}
+
+.askia-errors-summary,
+.askia-live-errors-summary div {
+    background: rgba({%= ErrorColor %});
+    border: {%= BorderWidth %} solid rgba({%= ErrorColor %});
+    border-radius: {%= BorderRadius %};
+    color: #FFF;
+    padding: 10px;
+    width: 93%;
+    margin-top: 20px;
+}
+
+.askia-caption {
+    font-size: {%= NormalFS %};
+    line-height: 33px;
+}
+.askia-response {
+    font-size: {%= NormalFS %};
+    padding: 5px;
+    cursor: pointer;
+    width: 85%;
+}
+{% If (Browser.Mobile = False) Then %}
+.askia-response:hover {
+    background-color : rgba({%= BlackColor.ToRGB() %}, .1);
+    cursor: pointer;
+}
+{% EndIf %}
+.askia-grid-header .askia-response:hover {
+    background-color : transparent;
+}
+.btn {
+    font-family: {%= FontFamily %};
+    font-size: {%= NormalFS %};
+    border-radius: {%= BorderRadius %};
+    padding: {%= VPadding %} 0;
+    box-shadow: 0 2px 5px rgba({%= BlackColor.ToRGB() %}, 0.3);
+}
+.btn:after {
+    box-shadow: inset 0 0 0 5em rgba({%= WhiteColor.ToRGB() %}, 0.5);
+}
+.btn:hover {
+    box-shadow: 0 2px 8px rgba({%= BlackColor.ToRGB() %}, 0.6);
+}
+input[type=checkbox]:checked~label.askia-response-label, input[type=radio]:checked~label.askia-response-label {
+    color: rgba({%= SecondaryColor %});
+}
+input[type=radio] + label.askia-radio,
+input[type=checkbox] + label.askia-checkbox {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: {%= BorderWidth %} solid rgba({%= NeutralDarkColor %});
+    box-shadow: inset 0 0 0 0 rgba({%= SecondaryColor %});
+}
+input[type=checkbox]:checked + label.askia-checkbox,
+input[type=radio]:checked + label.askia-radio {
+    background: rgba({%= SecondaryColor %});
+    border-color: rgba({%= SecondaryColor %});
+    box-shadow: inset 0 0 0 1em rgba({%= SecondaryColor %});
+    transition: transform .3s cubic-bezier(.2, .3, 0, 1), box-shadow .3s cubic-bezier(.2, .3, 0, 1), border-color 0s;
+}
+input[type=checkbox] + label.askia-checkbox:before,
+input[type=checkbox] + label.askia-checkbox:after,
+input[type=radio] + label.askia-radio:before,
+input[type=radio] + label.askia-radio:after {
+    top: -{%= BorderWidth %};
+    left: -{%= BorderWidth %};
+    font-size: 1.5rem;
+}
+
+input[type=text],
+input[type=number],
+textarea,
+input[type=color],
+input[type=date],
+input[type=datetime],
+input[type=email],
+input[type=month],
+input[type=password],
+input[type=range],
+input[type=search],
+input[type=tel],
+input[type=time],
+input[type=url],
+input[type=week] {
+    font-size: {%= NormalFS %};
+    border: {%= BorderWidth %} solid rgba({%= NeutralColor %});
+    padding: 0.5em 0.5em;
+}
+input[type=text]:focus,
+input[type=number]:focus,
+textarea:focus,
+input[type=color]:focus,
+input[type=date]:focus,
+input[type=datetime]:focus,
+input[type=email]:focus,
+input[type=month]:focus,
+input[type=password]:focus,
+input[type=range]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=week]:focus {
+    border: {%= BorderWidth %} solid rgba({%= SecondaryColor %});
+}
+input[type=text]:hover,
+input[type=number]:hover,
+textarea:hover,
+input[type=color]:hover,
+input[type=date]:hover,
+input[type=datetime]:hover,
+input[type=email]:hover,
+input[type=month]:hover,
+input[type=password]:hover,
+input[type=range]:hover,
+input[type=search]:hover,
+input[type=tel]:hover,
+input[type=time]:hover,
+input[type=url]:hover,
+input[type=week]:hover {
+    border: {%= BorderWidth %} solid rgba({%= NeutralDarkColor %});
+}
+
+.navigation {
+    text-align: center;
+    padding-top: {%= VPadding %};
+}
+
+.primary {
+    background-color: rgba({%= SecondaryColor %});
+    color: rgba({%= WhiteColor %});
+}
+
+.primary:hover {
+    background-color: rgba({%= SecondaryDarkColor %});
+    color: rgba({%= WhiteColor %});
+}
+
+.secondary {
+    background-color: rgba({%= NeutralLightColor %});
+    color: rgba({%= NeutralDarkColor %});
+}
+
+.secondary:hover {
+    background-color: rgba({%= NeutralColor %});
+    color: rgba({%= PrimaryDarkColor %});
+}
+.secondary.disabled:hover {
+    box-shadow: 0 2px 5px rgba({%= BlackColor.ToRGB() %}, 0.3);
+}
+
+.moduletitle{
+    font-family: {%= FontFamily %};
+    font-size: {%= LargeFS %};
+    border-radius: {%= BorderRadius %};
+    padding: {%= VPadding %} 0;
+    color: rgba({%=NeutralDarkColor %});
+}
+
+@media screen and (min-width: 501px) and (max-width: 768px) {
+
+}
+
+/* infobulle style */
+.infobulle {
+  margin-top: 20px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.infobulle .infobulle_text {
+  visibility: hidden;
+  min-width: 200px;
+  min-height: 51px;
+  /* max-height: 400px;
+  overflow-y: scroll; */
+  top: -25.5px;
+  right: 200%;
+  padding: 8px;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #595959;
+  font-family: IBM Plex Sans;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 15px;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+
+}
+.infobulle .infobulle_text::after {
+  content: " ";
+  position: absolute;
+  top: 35.5px;
+  left: 100%; /* To the right of the tooltip */
+
+  margin-top: -10px;
+  border-width: 11px;
+  border-style: solid;
+  border-color: transparent transparent transparent #595959;
+}
+.infobulle:hover .infobulle_text {
+  visibility: visible;
+}
+.infobulle .info_icon {
+	color:#595959;font-size:20px
+}
+
+@media screen and (max-width: {%=responsiveWidth %}px) {
+.askia-errors-summary,
+.askia-live-errors-summary div {
+    width: 90%;
+}
+.bottom-text-main {
+    display: block;
+    margin: 50px 10px 0 10px;
+}
+.menu {
+  width: 100%;
+  height: 68px;
+  box-shadow: none;
+  background-color: rgba({%= containerBackgroundColor %});
+}
+.main {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 70px;
+  left: 0px;
+}
+.adc-wrapper {
+  padding-top: 20px;
+}
+.que-wrapper {
+  padding-left: 3px;
+}
+.adc-footer {
+  /* position: fixed; */
+  bottom: 70px;
+  width: calc(100% - 20px);
+  text-align: center;
+}
+.logo-wrapper {
+  background-color: #ffffff;
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, 0.16);
+  z-index: 101;
+}
+.logo-gene_vf {
+  display: none;
+}
+.logo-gene_mobile{
+  display: inline;
+  width: auto;
+  height: 70px;
+  margin: 0px auto 0px 0px;
+  object-fit: contain;
+}
+.list-menu {
+  display: none;
+}
+.bottom-text-wrap {
+  width: 99.5%;
+  padding: auto 40px auto 40px;
+  margin: 0 10px 0 0;
+  display: none;
+}
+.bottom-text {
+    margin: 18px;
+}
+.previous-button {
+  width: 51.3px;
+  height: 50.1px;
+  border: solid 1px #9a9c96;
+  margin-right: 20px;
+  float:left;
+  overflow: hidden;
+}
+.next-button {
+  width: 124.3px;
+  height: 50.1px;
+  font-size: 12px;
+}
+{% If CurrentADP.Var("display_previous") = True Then %}
+.adc-footer {
+  text-align: justify;
+  padding-left:20px;
+}
+.next-button {
+  float: right;
+  margin-right: 40px;
+}
+{% EndIf %}
+
+.askia-response {
+    width: 92%;
+}
+.askia-question-label {
+  width:95%;
+  font-size: {%= NormalFS %};
+}
+
+.infobulle .infobulle_text {
+  /* mobile */
+  right: auto;
+  left: 40px;
+  /*  */
+}
+.infobulle .infobulle_text::after {
+top: 35.5px;
+left:auto;
+right: 100%;
+border-color: transparent #595959 transparent transparent;
+}
+
+}

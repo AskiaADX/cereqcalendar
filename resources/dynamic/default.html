@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>{%= CurrentADP.Var("window_title") %}</title>
+        <meta charset="utf-8" content="text/html" http-equiv="Content-Type">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <askia-head />
+    </head>
+    <body>
+        <div id='wrapper-lds-facebook'><div id='lds-facebook' class='lds-facebook'><div></div><div></div><div></div></div><div class='lds-facebook-text'>Chargement...</div></div>
+        <div class="menu">
+            <div class="logo-wrapper">
+                <img src="{%:= CurrentADP.URLTo("static/logo_gene_vf.png") %}" srcset="{%:= CurrentADP.URLTo("static/logo_gene_vf@2x.png 2x") %}" class="logo-gene_vf">
+                <img src="{%:= CurrentADP.URLTo("static/logo_gene_mobile.png") %}" class="logo-gene_mobile">
+            </div>
+            <div class="list-menu">
+                {%
+                Dim mlist = CurrentADP.Var("menu_items").ToString().Split()
+                Dim x = CurrentADP.Var("active_menu_item")
+                Dim socialMediaIconColor = CurrentADP.Var("social_media_icon_color")
+                Dim socialNetworkURL = CurrentADP.Var("social_network_url")
+                Dim activeMenuItem = 1
+                Dim errors_caption = ""
+                Dim i = 1
+                If mlist.count > 0 Then
+                    %}
+                                <ul>
+                                    {%
+                For i = 1 To mlist.count
+                    If (x = i) Then
+        		%}
+                    <li class="select">{%:= mList[i] %}</li>
+                    {% Else %}
+                    <li>{%:= mList[i] %}</li>
+                    {% EndIf %}
+
+                    {% Next %}
+                </ul>
+                {% EndIf %}
+            </div>
+            <div class="bottom-text-wrap">
+                <div class="social-m-ico-wrap">
+                    <div class="social-m-ico"><i class="fab fa-facebook-f" style="font-size:1.3em;color:rgba({%:=socialMediaIconColor %});"></i></div>
+                </div>
+                <p class="bottom-text">{%:= CurrentADP.Var("bottom_text")%}</p>
+            </div>
+        </div>
+        <div class="main">
+            <askia-form>
+                <div class="adc-wrapper">
+                    <div class="que-wrapper">
+                        {% If CurrentQuestions.Errors.Count Then %}
+                        <div class="askia-errors-summary">
+                            <!--insert errors here -->
+                        </div>
+                        {% End If %}
+                        <div class="askia-live-errors-summary">
+
+                        </div>
+                        <askia-questions />
+                    </div>
+                    <div class="adc-footer">
+                        {% If CurrentADP.Var("display_previous") = True Then %}
+                        <div class="previous-button" onclick="$('.in-previous-button').click()"><i class="fas fa-arrow-left"></i><span>{%= CurrentADP.Var("caption_previous") %}</span></div>
+                        <input type="submit" name="Previous" class="in-previous-button" value="" />
+                        {% End If %}
+
+                        <div class="next-button" onclick="$('.in-next-button').click()"><span>{%= CurrentADP.Var("caption_next") %}</span><i class="fas fa-arrow-right"></i></div>
+                        <input type="submit" name="Next" class="in-next-button" value="" />
+                    </div>
+                    <p class="bottom-text-main">{%:= CurrentADP.Var("bottom_text")%}</p>
+                </div>
+            </askia-form>
+        </div>
+
+        <script>
+            var errorUL = "";
+
+            {% If (errors_caption <> "") Then  %}
+            errorUL = "<p>{%:= errors_caption %}</p>";
+            {% End If %}
+
+            errorUL = errorUL + "<ul>";
+
+            {% Dim xerrorIndex = 1
+				For xerrorIndex = 1 To CurrentQuestions.Errors.Count
+    			Dim origError = CurrentQuestions.Errors[xerrorIndex].Message.ToString().Replace(crlf," ")
+    %}
+            var errorMsg = "{%= origError.Replace("\"","'") %}";
+            var strippedMsg = errorMsg.replace(/&lt;br\/&gt;/g, ' ');
+            strippedMsg = strippedMsg.replace(/&lt;[^&gt;]+&gt;/g, '');
+            strippedMsg = strippedMsg.replace(/<[^>]+>/g, '');
+            errorUL = errorUL + "<li>" + strippedMsg + "</li>";
+            {% Next %}
+            errorUL = errorUL+ "</ul>";
+
+            if (document.getElementsByClassName('askia-errors-summary')[0])	document.getElementsByClassName('askia-errors-summary')[0].innerHTML=errorUL;
+
+            var liElems = document.getElementsByClassName('list-menu')[0].getElementsByTagName('ul')[0].getElementsByTagName('li');
+            document.addEventListener("DOMContentLoaded", function(){
+                var menuHeight = document.getElementsByClassName('menu')[0].clientHeight;
+                var logoHeight = document.getElementsByClassName('logo-wrapper')[0].clientHeight;
+                var listMenuHeight = document.getElementsByClassName('list-menu')[0].clientHeight;
+
+                document.addEventListener("click", function(event){
+                    var el = event.target || event.srcElement;
+                    if ((el.nodeName === "TD" || el.nodeName === "LI" ) && el.className.indexOf("askia-response") >= 0 && el.className.indexOf("askia-response-label") < 0) {
+                        document.getElementById(el.lastElementChild.attributes.for.value).click();
+                    }
+                },false);
+                document.getElementsByClassName('social-m-ico')[0].addEventListener('click', function (event) {
+                    window.open('{%:= socialNetworkURL %}', '_blank');
+                });
+            });
+
+            window.onload = function(){
+                if (window.offsetWidth < 500) {
+                    var ua = window.navigator.userAgent;
+                    var msie = ua.indexOf("MSIE ");
+                    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                        document.getElementsByClassName('que-wrapper')[0].style.marginTop = "8vh !important";
+                    }
+                }
+
+            }
+        </script>
+        <askia-foot />
+    </body>
+</html>

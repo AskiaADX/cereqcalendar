@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page  xmlns="http://www.askia.com/2.1.0/ADPSchema"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.askia.com/2.1.0/ADPSchema https://raw.githubusercontent.com/AskiaADX/ADXSchema/2.1.0/ADPSchema.xsd"
+          version="2.1.0"
+          askiaCompat="5.4.2">
+  <info>
+    <name>CEREQCALENDAR</name>
+    <guid>16354106-18e9-4373-bdcd-bc343be6ec50</guid>
+    <version>1.0.6</version>
+    <date>2019-04-09</date>
+    <description><![CDATA[v1.0.3 - Added the new mobile view logo
+		v1.0.4 - Reduced to 70px the height of header on mobile view
+		v1.0.5 - Fixed Theme color
+		v1.0.6 - Added previous and next caption]]></description>
+    <company>Askia</company>
+    <author><![CDATA[Prabath Gamage<prabath@askia.com>]]></author>
+    <site></site>
+    <helpURL></helpURL>
+  </info>
+  <outputs defaultOutput="default">
+    <output id="default" masterPage="default.html">
+      <description><![CDATA[Default output]]></description>
+      <content fileName="askia.live.routing.js" type="javascript" mode="dynamic" position="head" />
+      <content fileName="style.css" type="css" mode="dynamic" position="head" />
+      <content fileName="default.css" type="css" mode="static" position="head" />
+      <content fileName="logo_gene_vf.png" type="image" mode="static" position="none" />
+      <content fileName="logo_gene_vf@2x.png" type="image" mode="static" position="none" />
+      <content fileName="logo_gene_vf@3x.png" type="image" mode="static" position="none" />
+      <content fileName="logo_gene_mobile.png" type="image" mode="static" position="none" />
+      <content fileName="ibmplexsans.css" type="css" mode="static" position="head" />
+      <content fileName="ibm-plex-sans.regular.ttf" type="binary" mode="static" position="none" />
+      <content fileName="fontawesome.css" type="css" mode="static" position="head" />
+      <content fileName="fontawesome.js" type="javascript" mode="static" position="head" />
+    </output>
+  </outputs>
+  <properties>
+    <category id="general" name="General">
+      <property xsi:type="standardProperty" id="window_title" name="Window title" type="string" require="true">
+        <description><![CDATA[Title of the window]]></description>
+        <value><![CDATA[Askia Web Survey]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="display_previous" name="Display previous" type="boolean" require="true">
+        <description><![CDATA[Display previous button]]></description>
+        <value><![CDATA[true]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="caption_previous" name="Previous caption" type="string" require="true">
+        <description><![CDATA[Caption of the previous button]]></description>
+        <value><![CDATA[précédent]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="caption_next" name="Next caption" type="string" require="true">
+        <description><![CDATA[Caption of the next button]]></description>
+        <value><![CDATA[suivant]]></value>
+      </property>
+    </category>
+    <category id="menu" name="Menu">
+      <property xsi:type="standardProperty" id="menu_items" name="Menu items" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Comma seperated menu items list]]></description>
+        <value><![CDATA[PARCOURS DE FORMATION,CARACTERISTIQUES DE L'INDIVIDU,PARCOURS PROFESSIONNEL,ACTUALISATION COORDONNEES]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="active_menu_item" name="Active menu item" type="number" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Active menu item number]]></description>
+        <value><![CDATA[1]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="responsive_width" name="Responsive width(px)" type="number" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Responsive width in pixels]]></description>
+        <value><![CDATA[1000]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="show_logo_bottom_line" name="Show bottom line of the logo" type="string" require="true" visible="true">
+        <description><![CDATA[Show bottom line of the logo]]></description>
+        <value><![CDATA[yes]]></value>
+        <options>
+          <option value="yes" text="Yes" />
+          <option value="no" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="menu_background_color" name="Menu background color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgba">
+        <description><![CDATA[The background color of the left navigation menu]]></description>
+        <value><![CDATA[255, 255, 255, 1]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="menu_font_color" name="Menu font color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgba">
+        <description><![CDATA[The font color of navigation menu items]]></description>
+        <value><![CDATA[187, 187, 187, 1]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="menu_selected_font_color" name="Menu selected font color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgba">
+        <description><![CDATA[The font color of navigation menu items when selected]]></description>
+        <value><![CDATA[86, 86, 86, 1]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="menu_selected_pip_color" name="Menu selected pip color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgba">
+        <description><![CDATA[The color of the pip of selected menu item]]></description>
+        <value><![CDATA[86, 86, 86, 1]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="show_social_media_icon" name="Show social media icon" type="string" require="true" visible="true">
+        <description><![CDATA[Show social media icon]]></description>
+        <value><![CDATA[no]]></value>
+        <options>
+          <option value="yes" text="Yes" />
+          <option value="no" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="social_network_url" name="Social network URL" type="string" require="true">
+        <description><![CDATA[Social network URL]]></description>
+        <value><![CDATA[https://www.askia.com/]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="social_media_icon_color" name="Social media icon color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgba">
+        <description><![CDATA[Social media icon color]]></description>
+        <value><![CDATA[255, 255, 255, 1]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="social_media_icon_background_color" name="Social media icon background color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgba">
+        <description><![CDATA[Social media icon background color]]></description>
+        <value><![CDATA[234, 174, 49, 1]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="bottom_text_color" name="Bottom text color" type="color" mode="dynamic" require="true" visible="true" colorFormat="rgba">
+        <description><![CDATA[The color of the bottom text]]></description>
+        <value><![CDATA[89, 89, 89, 1]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="bottom_text" name="Bottom text" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Text to be appeared on the bottom]]></description>
+        <value><![CDATA[Conformeacute;ment au code deacute;ontologie qui reacute;git sa profession,
+          Meacute;diameacute;trie garantit le strict anonymat de vos reacute;ponses qui ne seront utiliseacute;es qursquo;agrave; des fins statistiques.]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="bottom_text_font_size" name="Bottom text font size(px)" type="number" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Bottom text font size]]></description>
+        <value><![CDATA[8]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="menu_top_margin" name="Menu top margin(px)" type="number" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Top margin of the menu]]></description>
+        <value><![CDATA[0]]></value>
+      </property>
+    </category>
+  </properties>
+</page>
